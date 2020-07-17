@@ -1,29 +1,31 @@
 <template>
   <div class="new-todo">
     <form class="new-todo__form">
-      <input
-        type="text"
-        placeholder="Add new Todo..."
-        name="title"
-        v-model="title"
-        class="new-todo__title"
-      />
-      <label>
-        <input @click="addTodo" type="submit" value class="visually-hidden" />
-        <button class="btn btn--add">
-          <svg
-            viewBox="0 0 24 24"
-            class="icon icon--add"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 5v14M5 12h14" />
-          </svg>
-        </button>
-      </label>
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Add new Todo..."
+          name="title"
+          v-model="title"
+          class="new-todo__title"
+        />
+        <label>
+          <input @click="addTodo" type="submit" value class="visually-hidden" />
+          <button class="btn btn--add">
+            <svg
+              viewBox="0 0 24 24"
+              class="icon icon--add"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </label>
+      </div>
     </form>
   </div>
 </template>
@@ -66,6 +68,11 @@ export default {
   border-radius: 6px;
 }
 
+.input-group {
+  display: flex;
+  width: 100%;
+}
+
 .new-todo__title {
   flex: 1;
   padding: 0.5rem;
@@ -76,6 +83,9 @@ export default {
 
 .btn--add {
   background: #9ae6b4;
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 
 .btn--add:hover {
