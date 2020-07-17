@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="modal-container">
       <div class="modal-header">
-        <button class="modal-close" @click="$emit('close')">
+        <button class="btn btn--close modal-close" @click="$emit('close')">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

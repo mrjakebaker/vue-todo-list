@@ -66,7 +66,7 @@ li {
 }
 
 input[type="submit"],
-button {
+.btn {
   cursor: pointer;
   border: 0;
   padding: 0.25rem 0.5rem;

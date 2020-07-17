@@ -10,8 +10,8 @@
           class="new-todo__title"
         />
         <label>
-          <input @click="addTodo" type="submit" value class="visually-hidden" />
-          <button class="btn btn--add">
+          <input @click="addTodo" type="submit" value class="visually-hidden new-todo__submit" />
+          <span type="submit" class="btn btn--add" tabindex="-1">
             <svg
               viewBox="0 0 24 24"
               class="icon icon--add"
@@ -23,7 +23,7 @@
             >
               <path d="M12 5v14M5 12h14" />
             </svg>
-          </button>
+          </span>
         </label>
       </div>
     </form>
@@ -42,15 +42,16 @@ export default {
   methods: {
     addTodo(e) {
       e.preventDefault();
+      if (this.title !== "") {
+        const newTodo = {
+          id: uuidv4(),
+          title: this.title,
+          completed: false
+        };
 
-      const newTodo = {
-        id: uuidv4(),
-        title: this.title,
-        completed: false
-      };
-
-      this.$emit("add-todo", newTodo);
-      this.title = "";
+        this.$emit("add-todo", newTodo);
+        this.title = "";
+      }
     }
   }
 };
@@ -79,6 +80,12 @@ export default {
   margin-right: 0.5rem;
   border: 0;
   border-radius: 6px;
+}
+
+.new-todo__submit:focus + .btn {
+  /* border: 1px solid red; */
+  outline-offset: 0px;
+  outline: -webkit-focus-ring-color auto 1px;
 }
 
 .btn--add {
