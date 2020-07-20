@@ -124,8 +124,10 @@ export default {
 	margin-right: 5px;
 }
 
-.todo-item__label:hover:before {
-	background: #48bb78;
+@media screen and (min-width: 768px) {
+	.todo-item__label:hover:before {
+		background: #48bb78;
+	}
 }
 
 .todo-item.is--complete .todo-item__label:after {
@@ -141,12 +143,16 @@ export default {
 	transform: rotate(45deg);
 }
 
-.todo-item.is--complete .todo-item__label:hover:before {
-	background: #faf089;
+@media screen and (min-width: 768px) {
+	.todo-item.is--complete .todo-item__label:hover:before {
+		background: #faf089;
+	}
 }
 
-.todo-item.is--complete .todo-item__label:hover:after {
-	border-color: #666;
+@media screen and (min-width: 768px) {
+	.todo-item.is--complete .todo-item__label:hover:after {
+		border-color: #666;
+	}
 }
 
 .todo-item__actions {
