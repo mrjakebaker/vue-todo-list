@@ -70,17 +70,17 @@ export default {
 
 <style scoped>
 .todo-item {
-	background: #5a67d8;
+	background: var(--surface);
 	padding: 0.75rem;
 	margin-bottom: 0.25rem;
 	/* border-bottom: 1px solid #ccc; */
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	border-radius: 6px;
 }
 
 .todo-item__title {
-	color: #f7fafc;
+	color: var(--text-on-surface);
 	padding: 0 0.5rem;
 	font-weight: bold;
 }
@@ -126,7 +126,7 @@ export default {
 
 @media screen and (min-width: 768px) {
 	.todo-item__label:hover:before {
-		background: #48bb78;
+		background: var(--success-active);
 	}
 }
 
@@ -145,13 +145,13 @@ export default {
 
 @media screen and (min-width: 768px) {
 	.todo-item.is--complete .todo-item__label:hover:before {
-		background: #faf089;
+		background: var(--warning);
 	}
 }
 
 @media screen and (min-width: 768px) {
 	.todo-item.is--complete .todo-item__label:hover:after {
-		border-color: #666;
+		/* border-color: #666; */
 	}
 }
 
@@ -162,7 +162,7 @@ export default {
 }
 
 .btn--action {
-	background: #fff5f5;
+	background: transparent;
 	border-radius: 12px;
 	display: flex;
 	align-items: center;
@@ -170,7 +170,7 @@ export default {
 }
 
 .btn--edit:hover {
-	background: #e2e8f0;
+	background: var(--success-active);
 }
 
 .btn--edit:hover .icon {
@@ -178,7 +178,7 @@ export default {
 }
 
 .btn--delete:hover {
-	background: #f56565;
+	background: var(--error);
 }
 
 .btn--delete:hover .icon--delete {
@@ -186,13 +186,31 @@ export default {
 }
 
 .todo-item__actions .btn--action {
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
+	margin-left: 0.25rem;
+	/* margin-right: 0.5rem; */
 }
 
 .icon {
 	height: 18px;
 	width: 18px;
-	stroke: #5a67d8;
+	stroke: var(--text-on-surface);
+}
+
+@media screen and (min-width: 768px) {
+	.todo-item {
+		min-height: 50px;
+	}
+
+	.todo-item__title {
+		max-width: 350px;
+	}
+
+	.todo-item__actions {
+		display: none;
+	}
+
+	.todo-item:hover .todo-item__actions {
+		display: inherit;
+	}
 }
 </style>

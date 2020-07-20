@@ -45,10 +45,32 @@ export default {
 	box-sizing: border-box;
 }
 
+:root {
+	--background: #a3bffb;
+	--surface: #5a67d8;
+
+	--primary: #5a67d8;
+	--primary-alt: ;
+	--secondary: ;
+	--secondary-alt: ;
+
+	--text: #3c366b;
+	--text-alt: #2c3e50;
+	--text-on-surface: #f7fafc;
+
+	--error: #f56565;
+	--error-active: ;
+
+	--warning: #faf089;
+	--info: ;
+	--success: #9ae6b4;
+	--success-active: #48bb78;
+}
+
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #a3bffa;
+	background-color: var(--background);
 }
 
 h1,
@@ -73,6 +95,10 @@ input[type='submit'],
 	border-radius: 6px;
 }
 
+.btn--right {
+	margin-left: auto;
+}
+
 .visually-hidden {
 	position: absolute !important;
 	opacity: 0;
@@ -88,7 +114,7 @@ input[type='submit'],
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: #2c3e50;
+	color: var(--text);
 	margin: 20px auto;
 	width: 100%;
 	max-width: 480px;
@@ -99,15 +125,4 @@ input[type='submit'],
 	height: 18px;
 	width: 18px;
 }
-
-/* 
-background: #a3bffb,
-primary: #5a67d8, 
-secondary , 
-accent,
-error: #f56565, 
-warning: , 
-info, 
-success: light: #9ae6b4, dark: #48bb78, 
-*/
 </style>

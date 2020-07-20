@@ -1,22 +1,21 @@
 <template>
-  <header>
-    <h1>Do Soon.</h1>
-  </header>
+	<header>
+		<h1>Do Soon.</h1>
+	</header>
 </template>
 
 <script>
 export default {
-  name: "Header"
+	name: 'Header',
 };
 </script>
 
 <style lang="css" scoped>
 header {
-  margin-bottom: 20px;
-  text-align: center;
+	margin-bottom: 20px;
+	text-align: center;
 }
 h1 {
-  font-size: calc(15px + 2vw);
-  color: #333;
+	font-size: calc(15px + 2vw);
 }
 </style>
