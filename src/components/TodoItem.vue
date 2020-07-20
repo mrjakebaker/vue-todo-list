@@ -13,6 +13,7 @@
 		<p class="todo-item__title">{{ todo.title }}</p>
 		<div class="todo-item__actions">
 			<button
+				aria-label="edit"
 				class="btn btn--action btn--edit"
 				@click="$emit('open-modal', todo.id)"
 			>
@@ -33,6 +34,7 @@
 				</svg>
 			</button>
 			<button
+				aria-label="delete"
 				class="btn btn--action btn--delete"
 				@click="$emit('del-todo', todo.id)"
 			>
