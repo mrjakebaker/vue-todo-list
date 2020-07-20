@@ -98,4 +98,6 @@ input[type="submit"],
   height: 18px;
   width: 18px;
 }
+
+/* primary, secondary, accent, error, warning, info, success */
 </style>

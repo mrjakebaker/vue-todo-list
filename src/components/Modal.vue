@@ -17,7 +17,14 @@
           </svg>
         </button>
       </div>
-      <div class="modal-body">{{edittingTodo[0].id}} {{edittingTodo[0].title}}</div>
+      <div class="modal-body">
+        <div class="todo-info__title">
+          <label for>
+            <span>Name</span>
+            <input type="text" class="todo-info__title-input" v-model="edittingTodo[0].title" />
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +89,18 @@ export default {
   float: right;
 }
 
+.todo-info__title-input {
+  width: 100%;
+  border: 0;
+  padding: 1rem;
+  background: #ebebeb;
+  border-radius: 12px;
+}
+
+.todo-info__title-input:focus {
+  outline: 0;
+  box-shadow: 0 0 10px blue;
+}
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
