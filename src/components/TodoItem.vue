@@ -10,8 +10,11 @@
 				title="mark as completed"
 			/>
 		</label>
-		<p class="todo-item__title">{{ todo.title }}</p>
-		<div class="todo-item__actions">
+		<div class="todo-item__info">
+			<p class="todo-item__title">{{ todo.title }}</p>
+			<span class="todo-item__due-date">{{ todo.due }}</span>
+		</div>
+		<div class="todo-item__actions" v-if="todo.completed == false">
 			<button
 				aria-label="edit"
 				class="btn btn--action btn--edit"
@@ -75,14 +78,9 @@ export default {
 	margin-bottom: 0.25rem;
 	/* border-bottom: 1px solid #ccc; */
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	border-radius: 6px;
-}
-
-.todo-item__title {
-	color: var(--text-on-surface);
-	padding: 0 0.5rem;
-	font-weight: bold;
 }
 
 .is--complete {
@@ -114,8 +112,8 @@ export default {
 	-webkit-appearance: none;
 	background-color: transparent;
 	border: 2px solid white;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
-		inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+	/* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+		inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); */
 	padding: 10px;
 	display: inline-block;
 	position: relative;
@@ -152,7 +150,27 @@ export default {
 @media screen and (min-width: 768px) {
 	.todo-item.is--complete .todo-item__label:hover:after {
 		/* border-color: #666; */
+		border: 0;
 	}
+}
+
+.todo-item__info {
+	padding: 0 0.5rem;
+	color: var(--text-on-surface);
+}
+
+.todo-item__title {
+	color: var(--text-on-surface);
+	font-weight: bold;
+}
+
+.todo-item__due-date {
+	text-transform: uppercase;
+	display: inline-block;
+	font-size: 0.75rem;
+	margin-left: auto;
+
+	margin-top: 0.5rem;
 }
 
 .todo-item__actions {

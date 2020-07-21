@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import db from './components/firebaseInit';
+import moment from 'moment';
 import Header from './components/layout/Header';
 import AddTodo from './components/AddTodo';
 import Todos from './components/Todos';
@@ -33,9 +35,26 @@ export default {
 		},
 	},
 	created() {
-		fetch('https://jsonplaceholder.typicode.com/todos/?_limit=7')
-			.then((response) => response.json())
-			.then((json) => (this.todos = json));
+		// fetch('https://jsonplaceholder.typicode.com/todos/?_limit=7')
+		// 	.then((response) => response.json())
+		// 	.then((json) => (this.todos = json))
+
+		db.collection('todos')
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					console.log(doc.data().due);
+					const data = {
+						id: doc.id,
+						title: doc.data().title,
+						completed: doc.data().completed,
+						due: moment(doc.data().due.seconds * 1000, 'x').format(
+							'dddd, MMMM Do YYYY'
+						), // Monday
+					};
+					this.todos.push(data);
+				});
+			});
 	},
 };
 </script>

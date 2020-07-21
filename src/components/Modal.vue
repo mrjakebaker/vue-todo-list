@@ -1,8 +1,12 @@
 <template>
 	<div class="modal">
+		<div class="modal-curtain" @click="$emit('close')"></div>
 		<div class="modal-wrapper">
 			<div class="modal-container">
 				<div class="modal-header">
+					<span class="hidden">
+						{{ edittingTodo[0].id }}
+					</span>
 					<button
 						class="btn btn--close btn--right modal-close"
 						@click="$emit('close')"
@@ -75,11 +79,22 @@ export default {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background-color: rgba(0, 0, 0, 0.8);
+	/* background-color: rgba(0, 0, 0, 0.8); */
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
 	transition: opacity 0.5s ease;
+}
+
+.modal-curtain {
+	position: fixed;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-wrapper {
