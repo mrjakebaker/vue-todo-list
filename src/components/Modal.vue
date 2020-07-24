@@ -27,27 +27,32 @@
 				</div>
 				<div class="modal-body">
 					<!-- -->
-					<div class="modal-row">
-						<div class="edit-item">
-							<label class="edit-item__label label-title" for="edit-item-title">
-								<span>Name</span>
-							</label>
-							<input
-								id="edit-item-title"
-								type="text"
-								class="edit-item__input"
-								v-model="edittingTodo[0].title"
-							/>
+					<form @submit.prevent="updateTodo">
+						<div class="modal-row">
+							<div class="edit-item">
+								<label
+									class="edit-item__label label-title"
+									for="edit-item-title"
+								>
+									<span>Name</span>
+								</label>
+								<input
+									id="edit-item-title"
+									type="text"
+									class="edit-item__input"
+									v-model="edittingTodo[0].title"
+								/>
+							</div>
 						</div>
-					</div>
-					<!-- -->
-					<div class="modal-row">
-						2
-					</div>
-					<!-- -->
-					<div class="modal-row">
-						3
-					</div>
+						<!-- -->
+						<div class="modal-row">
+							2
+						</div>
+						<!-- -->
+						<div class="modal-row">
+							3
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -55,17 +60,55 @@
 </template>
 
 <script>
+import db from '../components/firebaseInit';
 export default {
 	name: 'Modal',
 	props: ['todos', 'activeModal'],
+	data() {
+		return {
+			id: null,
+			todo_id: null,
+			title: null,
+		};
+	},
 	computed: {
 		edittingTodo() {
 			let edittingTodo = this.todos.filter((todo) => {
-				return todo.id === this.activeModal;
+				return todo.todo_id === this.activeModal;
 			});
 
 			return edittingTodo;
 		},
+	},
+	methods: {
+		updateTodo() {
+			console.log('submited');
+			db.collection('todos')
+				.where('todo_id', '==', this.activeModal)
+				.get()
+				.then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						doc.ref.update({
+							title: this.edittingTodo[0].title,
+						});
+					});
+				});
+		},
+	},
+	created() {
+		console.log(this.activeModal);
+		db.collection('todos')
+			.where('id', '==', this.activeModal)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					console.log(doc.data().title);
+
+					doc.ref.update({
+						title: this.edittingTodo[0].title,
+					});
+				});
+			});
 	},
 };
 </script>

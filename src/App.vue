@@ -8,7 +8,7 @@
 
 <script>
 import db from './components/firebaseInit';
-import moment from 'moment';
+// import moment from 'moment';
 import Header from './components/layout/Header';
 import AddTodo from './components/AddTodo';
 import Todos from './components/Todos';
@@ -43,14 +43,15 @@ export default {
 			.get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
-					console.log(doc.data().due);
+					// console.log(doc.id);
 					const data = {
 						id: doc.id,
+						todo_id: doc.data().todo_id,
 						title: doc.data().title,
 						completed: doc.data().completed,
-						due: moment(doc.data().due.seconds * 1000, 'x').format(
-							'dddd, MMMM Do YYYY'
-						), // Monday
+						// due: moment(doc.data().due.seconds * 1000, 'x').format(
+						// 	'dddd, MMMM Do YYYY'
+						// ),
 					};
 					this.todos.push(data);
 				});

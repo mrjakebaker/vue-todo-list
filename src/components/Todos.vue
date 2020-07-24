@@ -8,12 +8,20 @@
 				:todos="todos"
 			/>
 		</transition>
-		<div v-bind:key="todo.id" v-for="todo in activeTodo">
-			<TodoItem
-				v-bind:todo="todo"
-				@del-todo="$emit('del-todo', todo.id)"
-				@open-modal="openModal"
-			/>
+		<div v-if="activeTodo.length > 0" class="todo__list--populated">
+			<div v-bind:key="todo.id" v-for="todo in activeTodo">
+				<TodoItem
+					v-bind:todo="todo"
+					@del-todo="$emit('del-todo', todo.id)"
+					@open-modal="openModal"
+				/>
+			</div>
+		</div>
+		<div class="todo__list--empty" v-else>
+			<img src="../assets/complete.svg" height="50" alt="" />
+			<h2>
+				All Done
+			</h2>
 		</div>
 		<h2 class="todo__list-title">Completed</h2>
 		<div v-bind:key="todo.id" v-for="todo in completedTodo">

@@ -5,20 +5,20 @@
 				class="todo-item__checkbox"
 				type="checkbox"
 				:checked="todo.completed"
-				@change="markComplete"
-				:id="todo.id"
+				@change="markComplete(todo.todo_id)"
+				:id="todo.todo_id"
 				title="mark as completed"
 			/>
 		</label>
 		<div class="todo-item__info">
 			<p class="todo-item__title">{{ todo.title }}</p>
-			<span class="todo-item__due-date">{{ todo.due }}</span>
+			<!-- <span class="todo-item__due-date">{{ todo.due }}</span> -->
 		</div>
 		<div class="todo-item__actions" v-if="todo.completed == false">
 			<button
 				aria-label="edit"
 				class="btn btn--action btn--edit"
-				@click="$emit('open-modal', todo.id)"
+				@click="$emit('open-modal', todo.todo_id)"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -60,12 +60,23 @@
 </template>
 
 <script>
+import db from '../components/firebaseInit';
 export default {
 	name: 'TodoItem',
 	props: ['todo'],
 	methods: {
-		markComplete() {
+		markComplete(id) {
 			this.todo.completed = !this.todo.completed;
+			db.collection('todos')
+				.where('todo_id', '==', id)
+				.get()
+				.then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						doc.ref.update({
+							completed: this.todo.completed,
+						});
+					});
+				});
 		},
 	},
 };
@@ -224,7 +235,7 @@ export default {
 	}
 
 	.todo-item__actions {
-		display: none;
+		/* display: none; */
 	}
 
 	.todo-item:hover .todo-item__actions {

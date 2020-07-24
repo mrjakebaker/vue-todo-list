@@ -38,6 +38,7 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid';
+import db from '../components/firebaseInit';
 export default {
 	name: 'AddTodo',
 	data() {
@@ -50,13 +51,23 @@ export default {
 			e.preventDefault();
 			if (this.title !== '') {
 				const newTodo = {
-					id: uuidv4(),
+					todo_id: uuidv4(),
 					title: this.title,
 					completed: false,
+					due: Date.now(),
 				};
 
 				this.$emit('add-todo', newTodo);
 				this.title = '';
+
+				db.collection('todos')
+					.add(newTodo)
+					.then((docRef) => {
+						console.log('Todo added: ', docRef.id);
+					})
+					.catch((error) => {
+						console.error('Error adding todo: ', error);
+					});
 			}
 		},
 	},
