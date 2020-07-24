@@ -155,7 +155,6 @@ export default {
 	border-radius: 12px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
 	transition: all 0.3s ease;
-	font-family: Helvetica, Arial, sans-serif;
 }
 .modal-header {
 	display: flex;
@@ -172,6 +171,8 @@ export default {
 	background: #ebebeb;
 	border-radius: 4px;
 	margin-top: 0.25rem;
+	color: var(--text);
+	font-size: inherit;
 }
 
 .edit-item__label {
@@ -179,6 +180,8 @@ export default {
 	color: var(--text-on-surface);
 	text-transform: uppercase;
 	letter-spacing: 0.25em;
+	font: inherit;
+	font-weight: bold;
 }
 
 .edit-item__input:focus {

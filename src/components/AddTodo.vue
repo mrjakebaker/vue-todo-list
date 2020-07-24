@@ -38,6 +38,7 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid';
+import * as firebase from 'firebase';
 import db from '../components/firebaseInit';
 export default {
 	name: 'AddTodo',
@@ -49,12 +50,14 @@ export default {
 	methods: {
 		addTodo(e) {
 			e.preventDefault();
+
 			if (this.title !== '') {
+				var dueDate = firebase.firestore.Timestamp.fromDate(new Date());
 				const newTodo = {
 					todo_id: uuidv4(),
 					title: this.title,
 					completed: false,
-					due: Date.now(),
+					due: dueDate,
 				};
 
 				this.$emit('add-todo', newTodo);

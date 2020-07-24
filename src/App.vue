@@ -8,7 +8,7 @@
 
 <script>
 import db from './components/firebaseInit';
-// import moment from 'moment';
+import moment from 'moment';
 import Header from './components/layout/Header';
 import AddTodo from './components/AddTodo';
 import Todos from './components/Todos';
@@ -26,8 +26,24 @@ export default {
 	},
 	methods: {
 		deleteTodo(id) {
+			console.log(id);
+			db.collection('todos')
+				.where('todo_id', '==', id)
+				.get()
+				.then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						doc.ref
+							.delete()
+							.then(() => {
+								console.log('Document successfully deleted!');
+							})
+							.catch(function(error) {
+								console.error('Error removing document: ', error);
+							});
+					});
+				});
 			this.todos = this.todos.filter((todo) => {
-				return todo.id !== id;
+				return todo.todo_id !== id;
 			});
 		},
 		addTodo(newTodo) {
@@ -43,15 +59,14 @@ export default {
 			.get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
-					// console.log(doc.id);
 					const data = {
 						id: doc.id,
 						todo_id: doc.data().todo_id,
 						title: doc.data().title,
 						completed: doc.data().completed,
-						// due: moment(doc.data().due.seconds * 1000, 'x').format(
-						// 	'dddd, MMMM Do YYYY'
-						// ),
+						due: moment(doc.data().due.seconds * 1000, 'x').format(
+							'dddd, MMMM Do YYYY'
+						),
 					};
 					this.todos.push(data);
 				});
