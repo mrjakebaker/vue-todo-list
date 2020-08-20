@@ -22,6 +22,7 @@ export default {
 	data() {
 		return {
 			todos: [],
+			isLoading: true,
 		};
 	},
 	methods: {
@@ -70,7 +71,8 @@ export default {
 					};
 					this.todos.push(data);
 				});
-			});
+			})
+			.then(console.log((this.isLoading = false)));
 	},
 };
 </script>
@@ -159,5 +161,24 @@ input[type='submit'],
 .icon {
 	height: 18px;
 	width: 18px;
+}
+
+input[type='color'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
+select:focus,
+textarea {
+	font-size: 16px;
 }
 </style>
