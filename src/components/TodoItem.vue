@@ -12,7 +12,7 @@
 		</label>
 		<div class="todo-item__info">
 			<p class="todo-item__title">{{ todo.title }}</p>
-			<span class="todo-item__due-date">{{ todo.due }}</span>
+			<!-- <span class="todo-item__due-date">{{ todo.due }}</span> -->
 		</div>
 		<div class="todo-item__actions" v-if="todo.completed == false">
 			<button

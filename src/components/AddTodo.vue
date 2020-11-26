@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .new-todo {
 	margin-bottom: 1.25rem;
 }
